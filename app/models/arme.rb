@@ -1,2 +1,5 @@
 class Arme < ApplicationRecord
+
+   
+    
 end

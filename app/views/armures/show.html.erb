@@ -1,0 +1,12 @@
+<%= image_tag(@avatar.img_path, class: "menu_icon") %>
+<h2><%= @armure.nom %></h2>
+
+<h3> Armure = <%= @armure.armor %></h3>
+<h3> Parade = <%= @armure.parade %></h3>
+<h3> Vitesse = <%= @armure.vit %></h3>
+
+<%= link_to "Modifier", edit_armure_path(@armure), :class => 'btn btn-default' %>  
+<%= link_to "Supprimer", armure_path(@armure), 
+method: :delete,
+data: {confirm: 'Etes-vous sûr de vouloir supprimer cette Arme?'},
+:class => 'btn btn-danger' %>  

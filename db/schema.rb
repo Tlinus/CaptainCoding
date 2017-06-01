@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531165104) do
+ActiveRecord::Schema.define(version: 20170601191711) do
+
+  create_table "armes", force: :cascade do |t|
+    t.string   "nom"
+    t.integer  "attq"
+    t.integer  "parade"
+    t.integer  "vit"
+    t.integer  "crit"
+    t.integer  "avatar_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "armures", force: :cascade do |t|
+    t.string   "nom"
+    t.integer  "armor"
+    t.integer  "def"
+    t.integer  "parade"
+    t.integer  "vit"
+    t.integer  "crit"
+    t.integer  "avatar_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "avatars", force: :cascade do |t|
     t.text     "img_path"

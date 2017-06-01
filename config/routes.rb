@@ -4,4 +4,8 @@ Rails.application.routes.draw do
 
   resources :stuffs
   resources :persos
+
+  resources :armes
+  resources :armures
+  resources :forges
 end

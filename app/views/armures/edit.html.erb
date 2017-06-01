@@ -1,0 +1,65 @@
+<h1> Modifier une Armure </h1>
+
+<%= form_for :armure, url: armure_path(@armure), method: :patch do |f| %>
+	<% if @armure.errors.any? %>
+			<% @armure.errors.full_messages.each do |msg| %>
+				<div class="alert alert-danger"><%= msg %></div>
+			<% end %>
+		<% end %>
+	<p>
+		<%= f.label :nom %><br>
+		<%= f.text_field(:nom, {:class => 'form-control'}) %> 
+	</p>
+
+	<p style="display: inline;">
+		<%= f.label("Armure : 	", {:style => "display: inline"})  %><div style="display: inline;" id="showArmor"></div><br>
+		<%= f.range_field :armor, :min=>0, :max=>200, :class=>"slide", :id=>"armor"%>
+	</p>
+
+	<p style="display: inline;">
+		<%= f.label("Parade : 	", {:style => "display: inline"})  %><div style="display: inline;" id="showParade"></div><br>
+		<%= f.range_field :parade, :min=>0, :max=>200, :class=>"slide", :id=>"parade"%>
+	</p>
+
+	<p style="display: inline;">
+		<%= f.label("Vitesse: 	", {:style => "display: inline"})  %><div style="display: inline;" id="showVit"></div><br>
+		<%= f.range_field :vit, :min=>-100, :max=>100, :class=>"slide", :id=>"vit"%>
+	</p>
+
+	<p>
+	    <%= fields_for :avatar do |field| %>
+	        <%= field.label "Url de l'image" %>
+	        <%= field.text_area(:img_path, {:class => 'form-control'})  %>
+	    <% end %>
+   	</p>
+
+	<p>
+		<%= f.submit({:class => "btn btn-primary"}) %>
+	</p>
+<% end %>
+
+<script type="text/javascript">
+
+	$( document ).ready(function() {
+	    $( "#showArmor" ).html($( "#armor" ).val());
+	    $( "#showParade" ).html($( "#parade" ).val());
+	    $( "#showVit" ).html($( "#vit" ).val());
+	    $( "#showCrit" ).html($( "#crit" ).val());
+	});
+
+	$( "#armor" ).change(function() {
+	  $( "#showArmor" ).html($( "#armor" ).val())
+	});
+
+	$( "#parade" ).change(function() {
+	  $( "#showParade" ).html($( "#parade" ).val())
+	});
+
+	$( "#vit" ).change(function() {
+	  $( "#showVit" ).html($( "#vit" ).val())
+	});
+
+	$( "#crit" ).change(function() {
+	  $( "#showCrit" ).html($( "#crit" ).val())
+	});
+</script>
