@@ -13,6 +13,175 @@
  *= require_tree .
  *= require_self
  */
+
+ @font-face {
+    font-family: 'Carnaval';
+    src: url('/assets/fonts/CarnevaleeFreakshow.ttf') format('truetype');
+}
+
+ @font-face {
+    font-family: 'Alpha';
+    src: url('/assets/fonts/AlphaWood.ttf') format('truetype');
+}
+
 input{
 	background-color: rgba(100,100,100, 0.4);
+}
+
+.img-avatar{
+	 border-radius: 50%;
+	 max-width: 250px;
+	 max-height: 350px;
+	 display: inline;
+
+	 border: 3px  solid  #832;
+}
+
+.img-armes{
+	margin: auto;
+	padding-top: 25px;
+	padding-bottom: 25px;
+ 	max-width: 100%;
+ 	max-height: 100%;
+ 	display: inline;
+
+}
+
+.img-armes-show{
+	 max-width: 250px;
+	 max-height: 350px;
+	 display: inline;
+}
+body{
+padding:0;margin:0;
+background: url(/assets/rute/monde/worldd.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+margin: 0;
+}
+
+.well{
+	background-color: rgba(78, 18, 20, 0.3);
+	border: 1px solid #333;
+	
+}
+.btn-create{
+	background-color: rgba(70, 120, 200, 0.5);
+	border: 2px solid #111;
+	border-radius: 5px;
+	color: #CCC;
+	font-size: 20px;
+	font-style: bold;
+	margin-bottom: 30px;
+
+}
+.btn-default{
+	background-color: rgba(210, 210, 210, 0.5);
+}
+.welcome-title{
+	text-align: center;
+	font-size: 3em;
+	font-family: 'Alpha';
+}
+
+.ranger-value{
+	display: inline;
+	font-size: 2em;
+	padding-left: 42%;
+	color: #111;
+}
+input[type=text-area]{
+	background-color: rgba(200, 200, 200, 0.5);
+}
+input[type=text]{
+	background-color: rgba(200, 200, 200, 0.5);
+}
+
+textarea {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 13.2px 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 12.6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.99), 0px 0px 1px rgba(13, 13, 13, 0.99);
+  background: rgba(146, 87, 70, 0.5);
+  border-radius: 6.2px;
+  border: 0.7px solid rgba(86, 36, 37, 0.7);
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 3px rgba(120, 34, 0, 0.53), 0px 0px 1px rgba(146, 41, 0, 0.53);
+  border: 2.2px solid rgba(87, 39, 0, 0.7);
+  height: 39px;
+  width: 19px;
+  border-radius: 29px;
+  background: rgba(86, 60, 64, 0.62);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -13.9px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: rgba(163, 97, 78, 0.5);
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 12.6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.99), 0px 0px 1px rgba(13, 13, 13, 0.99);
+  background: rgba(146, 87, 70, 0.5);
+  border-radius: 6.2px;
+  border: 0.7px solid rgba(86, 36, 37, 0.7);
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 3px rgba(120, 34, 0, 0.53), 0px 0px 1px rgba(146, 41, 0, 0.53);
+  border: 2.2px solid rgba(87, 39, 0, 0.7);
+  height: 39px;
+  width: 19px;
+  border-radius: 29px;
+  background: rgba(86, 60, 64, 0.62);
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 12.6px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: rgba(129, 77, 62, 0.5);
+  border: 0.7px solid rgba(86, 36, 37, 0.7);
+  border-radius: 12.4px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.99), 0px 0px 1px rgba(13, 13, 13, 0.99);
+}
+input[type=range]::-ms-fill-upper {
+  background: rgba(146, 87, 70, 0.5);
+  border: 0.7px solid rgba(86, 36, 37, 0.7);
+  border-radius: 12.4px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.99), 0px 0px 1px rgba(13, 13, 13, 0.99);
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 3px rgba(120, 34, 0, 0.53), 0px 0px 1px rgba(146, 41, 0, 0.53);
+  border: 2.2px solid rgba(87, 39, 0, 0.7);
+  height: 39px;
+  width: 19px;
+  border-radius: 29px;
+  background: rgba(86, 60, 64, 0.62);
+  cursor: pointer;
+  height: 12.6px;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: rgba(146, 87, 70, 0.5);
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: rgba(163, 97, 78, 0.5);
 }

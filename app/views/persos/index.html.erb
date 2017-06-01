@@ -1,12 +1,21 @@
 <h3> Mes Persos </h3>
 
 <% @persos.each do |perso| %>
+<% @avatar = Avatar.find_by_id(perso.avatar_id) %>
 	<div class="well">
-	<% @avatar = Avatar.find_by_id(perso.avatar_id) %>
-	<%= image_tag(@avatar.img_path, class: "menu_icon") %>
-	<h4><%= perso.nom %></h4>
-	<h5><%= perso.surnom %></h5>
-	<%= link_to "Inspecter", perso_path(perso), :class => "btn btn-default" %>
+		<div class="row">
+			<div class="col-md-3">
+				<%= image_tag(@avatar.img_path, class: "menu_icon img-avatar") %>
+			</div>
+			<div class="col-md-3">
+				<h3><%= perso.nom %></h3>
+				<h4><%= perso.surnom %></h4>
+
+				<h5></h5>
+			</div>
+
+		</div>
+		<%= link_to "Inspecter", perso_path(perso), :class => "btn btn-default" %>
 	
 	</div>
 <%end%>

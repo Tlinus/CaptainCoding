@@ -15,7 +15,7 @@ class PersosController < ApplicationController
 
     def create
     	@perso = Perso.new(perso_params)
-
+        
         puts @perso.inspect
 
         @avatar = Avatar.new(avatar_params)
@@ -62,7 +62,7 @@ class PersosController < ApplicationController
     end
 
     private def perso_params
-    	params.require(:perso).permit(:nom, :surnom, :life, :attaque, avatar: [:img_path])
+    	params.require(:perso).permit(:nom, :surnom, :vie, :attq, :armor, :parade, :vit, :crit, avatar: [:img_path])
 	end
 
     private def avatar_params

@@ -12,24 +12,24 @@
 	</p>
 
 	<p style="display: inline;">
-		<%= f.label("Armure : 	", {:style => "display: inline"})  %><div style="display: inline;" id="showArmor"></div><br>
+		<%= f.label("Armure : 	", {:style => "display: inline"})  %><div class="ranger-value" id="showArmor"></div><br>
 		<%= f.range_field :armor, :min=>0, :max=>200, :class=>"slide", :id=>"armor"%>
 	</p>
 
 	<p style="display: inline;">
-		<%= f.label("Parade : 	", {:style => "display: inline"})  %><div style="display: inline;" id="showParade"></div><br>
+		<%= f.label("Parade : 	", {:style => "display: inline"})  %><div class="ranger-value" id="showParade"></div><br>
 		<%= f.range_field :parade, :min=>0, :max=>200, :class=>"slide", :id=>"parade"%>
 	</p>
 
 	<p style="display: inline;">
-		<%= f.label("Vitesse: 	", {:style => "display: inline"})  %><div style="display: inline;" id="showVit"></div><br>
+		<%= f.label("Vitesse: 	", {:style => "display: inline"})  %><div class="ranger-value" id="showVit"></div><br>
 		<%= f.range_field :vit, :min=>-100, :max=>100, :class=>"slide", :id=>"vit"%>
 	</p>
 
 	<p>
 	    <%= fields_for :avatar do |field| %>
 	        <%= field.label "Url de l'image" %>
-	        <%= field.text_area(:img_path, {:class => 'form-control'})  %>
+	        <%= field.text_field(:img_path, {:class => 'form-control'})  %>
 	    <% end %>
    	</p>
 

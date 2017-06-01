@@ -1,20 +1,28 @@
 <div class="row">	
 	<div class="col-xs-12">
-		<h3> Bienvenue à la Forge !</h3>
+		<h3 class="welcome-title"> Bienvenue à la Forge !</h3>
 	</div>
 
-	<div class="col-xs-12 col-md-6 Armes">
-		<%= link_to "Creer une armes", new_arme_path, :class => "btn btn-success" %>
+	<div class="col-xs-12 col-md-5 Armes">
+		<%= link_to "Creer une armes", new_arme_path, :class => "btn btn-create center-block" %>
 		<div class="row">
 			<div class="col-xs-12">
 				<% @armes.each do |arme| %>
-				<div class="well">
-					<h4><%= arme.nom %></h4>
-					<h5> Attaque = <%= arme.attq %></h5>
-					<h5> Parade = <%= arme.parade %></h5>
-					<h5> Vitesse = <%= arme.vit %></h5>
-					<h5> Critiques = <%= arme.crit %></h5>
-					<%= link_to "Inspecter", arme_path(arme), :class => "btn btn-default" %>
+				<div class="well row">
+					<div class="col-xs-4"> 
+						<h4><%= arme.nom %></h4>
+						<h5> Attaque = <%= arme.attq %></h5>
+						<h5> Parade = <%= arme.parade %></h5>
+						<h5> Vitesse = <%= arme.vit %></h5>
+						<h5> Critiques = <%= arme.crit %></h5>
+					</div>
+					<div class="col-xs-8">
+						<% @avatar = Avatar.find_by_id(arme.avatar_id) %>
+						<%= image_tag(@avatar.img_path, class: "menu_icon img-armes") %>
+					</div>
+					<div class="col-xs-12">
+						<%= link_to "Inspecter", arme_path(arme), :class => "btn btn-default center-block" %>
+					</div>
 				</div>
 				<%end%>
 			</div>
@@ -22,18 +30,26 @@
 		</div>
 	</div>
 
-	<div class="col-xs-12 col-md-6 Armures">
-		<%= link_to "Creer une armures", new_armure_path, :class => "btn btn-success" %>
+	<div class="col-xs-12 col-md-offset-2 col-md-5 Armures">
+		<%= link_to "Creer une armures", new_armure_path, :class => "btn btn-create center-block" %>
 		<div class="row">
 			<div class="col-xs-12">
 				<% @armures.each do |armure| %>
-				<div class="well">
-					<h4><%= armure.nom %></h4>
-					<h5> Armure = <%= armure.armor %></h5>
-					<h5> Parade = <%= armure.parade %></h5>
-					<h5> Vitesse = <%= armure.vit %></h5>
-					<h5 style="color: #f5f5f5"> a</h5>
-					<%= link_to "Inspecter", armure_path(armure), :class => "btn btn-default" %>
+				<div class="well row">
+					<div class="col-xs-4"> 
+						<h4><%= armure.nom %></h4>
+						<h5> Armure = <%= armure.armor %></h5>
+						<h5> Parade = <%= armure.parade %></h5>
+						<h5> Vitesse = <%= armure.vit %></h5>
+						<h5 style="color: #f5f5f5"> a</h5>
+					</div>
+					<div class="col-xs-8">
+						<% @avatar = Avatar.find_by_id(armure.avatar_id) %>
+						<%= image_tag(@avatar.img_path, class: "menu_icon img-armes") %>
+					</div>
+					<div class="col-xs-12">
+						<%= link_to "Inspecter", armure_path(armure), :class => "btn btn-default center-block" %>
+					</div>
 				</div>
 				<%end%>
 			</div>
