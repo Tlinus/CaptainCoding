@@ -17,6 +17,13 @@
 	</p>
 
 	<p>
+	    <%= fields_for :avatar do |field| %>
+	        <%= field.label "Url de l'image" %>
+	        <%= field.text_area(:img_path, {:value => @avatar.img_path, :class => 'form-control'})  %>
+	    <% end %>
+   	</p>
+
+	<p>
 		<%= f.submit({:class => "btn btn-primary"}) %>
 	</p>
 <% end %>

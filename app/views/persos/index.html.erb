@@ -2,6 +2,8 @@
 
 <% @persos.each do |perso| %>
 	<div class="well">
+	<% @avatar = Avatar.find_by_id(perso.avatar_id) %>
+	<%= image_tag(@avatar.img_path, class: "menu_icon") %>
 	<h4><%= perso.nom %></h4>
 	<h5><%= perso.surnom %></h5>
 	<%= link_to "Inspecter", perso_path(perso), :class => "btn btn-default" %>

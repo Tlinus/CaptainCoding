@@ -1,8 +1,8 @@
 <h1> Créer un Personnage </h1>
 
-<%= form_for :perso, url: persos_path do |f| %>
-		<% if @perso.errors.any? %>
-			<% @perso.errors.full_messages.each do |msg| %>
+<%= form_for :stuff, url: stuffs_path do |f| %>
+		<% if @stuff.errors.any? %>
+			<% @stuff.errors.full_messages.each do |msg| %>
 				<div class="alert alert-danger"><%= msg %></div>
 			<% end %>
 		<% end %>
@@ -15,13 +15,6 @@
 		<%= f.label :surnom %><br>
 		<%= f.text_field(:surnom, {:class => 'form-control'}) %> 
 	</p>
-
-	<p>
-	    <%= fields_for :avatar do |field| %>
-	        <%= field.label "Url de l'image" %>
-	        <%= field.text_area(:img_path, {:class => 'form-control'})  %>
-	    <% end %>
-   	</p>
 
 	<p>
 		<%= f.submit({:class => "btn btn-primary"}) %>

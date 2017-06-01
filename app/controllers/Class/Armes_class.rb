@@ -1,5 +1,5 @@
 class Armes
-	 attr_reader  :name :attq, :vit :lvl, :cost
+	attr_accessor :name :attq, :vit, :lvl, :cost
 	    def initialize(name, attq, vit)
 	        @name = name
 	        @attq = attq

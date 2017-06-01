@@ -1,0 +1,2 @@
+class ForgesController < ApplicationController
+end

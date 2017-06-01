@@ -1,0 +1,2 @@
+class Armure < ApplicationRecord
+end

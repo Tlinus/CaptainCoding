@@ -1,0 +1,10 @@
+<h3> Mes Objets </h3>
+
+<% @stuffs.each do |stuff| %>
+	<div class="well">
+	<h4><%= stuff.nom %></h4>
+	<h5><%= stuff.surnom %></h5>
+	<%= link_to "Inspecter", stuff_path(stuff), :class => "btn btn-default" %>
+	
+	</div>
+<%end%>

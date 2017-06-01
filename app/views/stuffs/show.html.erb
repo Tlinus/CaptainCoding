@@ -1,0 +1,8 @@
+<h2><%= @stuff.nom %></h2>
+<h3><%= @stuff.surnom %></h3>
+
+<%= link_to "Modifier", edit_stuff_path(@stuff), :class => 'btn btn-default' %>  
+<%= link_to "Supprimer", stuff_path(@stuff), 
+method: :delete,
+data: {confirm: 'Etes-vous sûr de vouloir supprimer ce Perso?'},
+:class => 'btn btn-danger' %>  

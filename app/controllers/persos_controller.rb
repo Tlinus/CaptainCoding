@@ -1,24 +1,12 @@
 class PersosController < ApplicationController
 
-	# def initialize(name)
- #        @name = name
- #        @life = 100
- #        @dmg = 5
- #        @equipement = {}
- #        @mana = 100
- #        @vel = 15
- #        @strong = 1.2
-
- #    end
-
     def index
     	@persos = Perso.all
     end
 
     def show
-    	@perso = Perso.find(params[:id])
-    	
-    	
+    	@perso = Perso.find(params[:id])    
+        @avatar = Avatar.find(@perso.avatar_id)	
     end
 
     def new 
@@ -28,20 +16,36 @@ class PersosController < ApplicationController
     def create
     	@perso = Perso.new(perso_params)
 
+        puts @perso.inspect
+
+        @avatar = Avatar.new(avatar_params)
+
+        puts @avatar.inspect
+
+        @avatar.save
+
+        @perso.avatar_id = @avatar.id
+
     	if(@perso.save)
     		redirect_to @perso
     	else
-			render 'new'
-	 	end
+			render 'new'  
+        end 
+
 
     end
 
     def edit
     	@perso = Perso.find(params[:id])	
+         @avatar = Avatar.find(@perso.avatar_id)    
     end
 
     def update
     	@perso = Perso.find(params[:id])
+
+        @avatar = Avatar.find(@perso.avatar_id)    
+
+        @avatar.update(avatar_params)
 
     	if(@perso.update(perso_params))
     		redirect_to @perso
@@ -58,8 +62,14 @@ class PersosController < ApplicationController
     end
 
     private def perso_params
-    	params.require(:perso).permit(:nom, :surnom, :life, :attaque, :img)
+    	params.require(:perso).permit(:nom, :surnom, :life, :attaque, avatar: [:img_path])
 	end
+
+    private def avatar_params
+        params.require(:avatar).permit(:img_path)
+    end
+    
+
 
 
 end
