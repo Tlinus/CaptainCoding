@@ -3,6 +3,8 @@ class EquipementsController < ApplicationController
 	def edit
 		@equipement = Equipement.find(params[:id])
 		 puts @equipement.inspect
+
+		#Chargement des Armes disponibles dans l'equipement
 		if @equipement.arme1_id != nil
 			@arme1Equiped = Arme.find_by_id(@equipement.arme1_id)
 		end
@@ -20,6 +22,8 @@ class EquipementsController < ApplicationController
 
 	def update
 		@equip = Equipement.find(params[:id])
+
+		#Les armes anciennement attribuées et utilisées par l'equipement sont mises à nouveau à disposition 
 		unless(@equip.arme1_id.nil?)
 			@oldArme1 = Arme.find(@equip.arme1_id);
 			@oldArme1.update(is_used: false)
@@ -33,9 +37,10 @@ class EquipementsController < ApplicationController
 			@oldArmure.update(is_used: false)
 		end
 
+		#L'equipement est mis à jour avec les nouveaux ids d'armes et d'armure
 		@equip.update(equipement_params)
 
-		
+		#Les armes nouvellement attribuées et utilisées par l'equipement ne sont  plus disponible à la selection 
 		unless(@equip.arme1_id.nil?)
 			@arme1 = Arme.find(@equip.arme1_id)
 			puts @arme1.inspect

@@ -5,13 +5,15 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' %>
   </head>
 
   <body>
-
-
+  <%= link_to  "Arena" do %>
+    <%= image_tag( "VS.png", class: "Versus") %>
+  <% end %>
      <nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom: 20px;">
       <div class="container">
         <div class="navbar-header">
@@ -28,6 +30,7 @@
             <li> <%= link_to "Arena", home_path %> </li>
             
           </ul>
+
           <ul class="nav navbar-nav navbar-right">
             <li> <%= link_to "Forge", forges_path %> </li>
             <li> <%= link_to "Mes Perso", persos_path %> </li>
@@ -37,11 +40,38 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <div style="height: 50px;"></div>
+    <div style="height: 75px;"></div>
     <div class="container">
     <%= yield %>
     </div>
 
+<script type="text/javascript">
+  $( window ).resize(function() {
+    $('.Versus').css({
+       'left' : ( $(window).width()- ($('.Versus').width()/2))/2
+    });
+});
 
+
+
+$(function() {
+    $('.Versus').css({
+        'position' : 'fixed',
+        'width' : '100px',
+        'left' : ( $(window).width()- ($('.Versus').width()/2))/2,
+        'z-index': '2000',
+        'margin-left' : '0'     
+    });
+});
+
+$(function() {
+    $( ".Versus" ).toggle( "puff" ).toggle( "shake" );
+    setTimeout(function(){
+      $( ".Versus" ).effect( "shake" );
+    }, 2000);
+    
+});
+
+</script>
   </body>
 </html>

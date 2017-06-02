@@ -23,6 +23,11 @@
     font-family: 'Alpha';
     src: url('/assets/fonts/AlphaWood.ttf') format('truetype');
 }
+*{
+  color:#FEE;
+  text-shadow:0 2px 2px #000;
+
+}
 
 h4{
 	font-size: 3em;

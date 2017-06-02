@@ -31,14 +31,22 @@
 			<div class="">
 
 				<div class="col-md-2 arme1-perso-show">
-
+				<% unless @avatarArme1Equiped.nil? %>
 					<%= image_tag(@avatarArme1Equiped.img_path, class: "menu_icon img-avatar-arme-showperso") %>
+					<% @avatarArme1Equiped = nil %>
+				<% end %>
 				</div>
 				<div class="col-md-2 arme2-perso-show">
+				<% unless @avatarArme2Equiped.nil? %>
 					<%= image_tag(@avatarArme2Equiped.img_path, class: "menu_icon img-avatar-arme-showperso") %>
+					<% @avatarArme2Equiped = nil %>
+				<% end %>
 				</div>
 				<div class="col-md-2 armure-perso-show">
+				<% unless @avatarArmureEquiped.nil? %>
 					<%= image_tag(@avatarArmureEquiped.img_path, class: "menu_icon img-avatar-arme-showperso") %>
+					<% @avatarArmureEquiped = nil %>
+				<% end %>
 				</div>
 			</div>
 
