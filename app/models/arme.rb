@@ -4,7 +4,7 @@ class Arme < ApplicationRecord
 
   private
     def default_values
-      self.is_used ||= 0
+      self.is_used ||= false
     end
     
 end

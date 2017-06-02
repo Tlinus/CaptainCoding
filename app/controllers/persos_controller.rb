@@ -7,6 +7,23 @@ class PersosController < ApplicationController
     def show
     	@perso = Perso.find(params[:id])    
         @avatar = Avatar.find(@perso.avatar_id)	
+
+        @equip = Equipement.find_by_id(@perso.equipement_id)
+        puts @equip.inspect
+        unless @equip.arme1_id.nil?
+            @arme1Equiped = Arme.find_by_id(@equip.arme1_id)
+            @avatarArme1Equiped = Avatar.find_by_id(arme1Equiped.avatar_id)
+        end
+        unless @equip.arme2_id.nil?
+            @arme2Equiped = Arme.find_by_id(@equip.arme2_id)
+            @avatarArme2Equiped = Avatar.find_by_id(arme2Equiped.avatar_id)
+
+        end
+        unless @equip.armure_id.nil?
+            @armureEquiped = Armure.find_by_id(@equip.armure_id)
+            @avatarArmureEquiped = Avatar.find_by_id(armureEquiped.avatar_id)
+
+        end
     end
 
     def new 

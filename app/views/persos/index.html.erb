@@ -3,6 +3,20 @@
 <% @persos.each do |perso| %>
 <% @avatar = Avatar.find_by_id(perso.avatar_id) %>
 <% @equip = Equipement.find_by_id(perso.equipement_id) %>
+<% 		unless @equip.arme1_id.nil?
+            @arme1Equiped = Arme.find_by_id(@equip.arme1_id)
+            @avatarArme1Equiped = Avatar.find_by_id(@arme1Equiped.avatar_id)
+        end
+        unless @equip.arme2_id.nil?
+            @arme2Equiped = Arme.find_by_id(@equip.arme2_id)
+            @avatarArme2Equiped = Avatar.find_by_id(@arme2Equiped.avatar_id)
+
+        end
+        unless @equip.armure_id.nil?
+            @armureEquiped = Armure.find_by_id(@equip.armure_id)
+            @avatarArmureEquiped = Avatar.find_by_id(@armureEquiped.avatar_id)
+
+        end %>
 	<div class="well">
 		<div class="row">
 			<div class="col-md-3">
@@ -13,6 +27,19 @@
 				<h4><%= perso.surnom %></h4>
 
 				<h5></h5>
+			</div>
+			<div class="">
+
+				<div class="col-md-2 arme1-perso-show">
+
+					<%= image_tag(@avatarArme1Equiped.img_path, class: "menu_icon img-avatar-arme-showperso") %>
+				</div>
+				<div class="col-md-2 arme2-perso-show">
+					<%= image_tag(@avatarArme2Equiped.img_path, class: "menu_icon img-avatar-arme-showperso") %>
+				</div>
+				<div class="col-md-2 armure-perso-show">
+					<%= image_tag(@avatarArmureEquiped.img_path, class: "menu_icon img-avatar-arme-showperso") %>
+				</div>
 			</div>
 
 		</div>

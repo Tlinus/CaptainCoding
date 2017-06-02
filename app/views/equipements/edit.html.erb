@@ -4,22 +4,97 @@
 					<div class="alert alert-danger"><%= msg %></div>
 				<% end %>
 			<% end %>
-			<%= hidden_field_tag :arme1_id, @equipement.arme1_id, :class => "arme1_id_form_field"%>
-			<%= hidden_field_tag :arme2_id, @equipement.arme2_id, :class => "arme2_id_form_field"%>
-			<%= hidden_field_tag :armure_id, @equipement.armure_id, :class => "armure_id_form_field"%>
+			<%= f.hidden_field(:arme1_id, :value => @equipement.arme1_id, :class => "arme1_id_form_field")%>
+			<%= f.hidden_field( :arme2_id, :value => @equipement.arme2_id, :class => "arme2_id_form_field")%>
+			<%= f.hidden_field( :armure_id, :value => @equipement.armure_id, :class => "armure_id_form_field")%>
 
-		<% end %>
+
 
 <div class="row">
-	<div class="col-xs-12 col-md-3 arme1" data-toggle="modal" data-target="#armes">
-		<%= image_tag("add.png", class: "menu_icon ") %>
+	<div class="col-xs-12 col-md-4 arme1" data-toggle="modal" data-target="#armes">
+		<% if @arme1Equiped != nil %>	
+		 	<% @avatarEquiped1 = Avatar.find_by_id(@arme1Equiped.avatar_id) %>
+			<%= image_tag(@avatarEquiped1.img_path, class: "menu_icon arme1 add-equip ") %>
+			
+		<% else %>
+			<%= image_tag("add.png", class: "menu_icon arme1 add-equip ") %>
+		<% end %>
 	</div>
-	<div class="col-xs-12 col-md-3 " data-toggle="modal" data-target="#armes">
-		<%= image_tag("add.png", class: "menu_icon arme2 ") %>
+	<div class="col-xs-12 col-md-4 " data-toggle="modal" data-target="#armes">
+		<% if @arme2Equiped != nil %>	
+		 	<% @avatarEquiped2 = Avatar.find_by_id(@arme2Equiped.avatar_id) %>
+			<%= image_tag(@avatarEquiped2.img_path, class: "menu_icon arme2 add-equip ") %>
+			
+		<% else %>
+			<%= image_tag("add.png", class: "menu_icon arme2 add-equip ") %>
+		<% end %>
 	</div>
-	<div class="col-xs-12 col-md-3 " data-toggle="modal" data-target="#armures">
-		<%= image_tag("add.png", class: "menu_icon armure") %>
+	<div class="col-xs-12 col-md-4 " data-toggle="modal" data-target="#armures">
+		<% if @armureEquiped != nil %>	
+		 	<% @avatarArmureEquiped = Avatar.find_by_id(@armureEquiped.avatar_id) %>
+			<%= image_tag(@avatarArmureEquiped.img_path, class: "menu_icon armure add-equip ") %>
+			
+		<% else %>
+			<%= image_tag("add.png", class: "menu_icon armure add-equip") %>
+		<% end %>		
+		
 	</div>
+	<div class="col-xs-12 col-md-4 arme1Desc">
+		<% if @arme1Equiped != nil %>	
+			<div class="desc">
+				<h3> Attaque = <%= @arme1Equiped.attq %></h3>
+				<h3> Parade = <%= @arme1Equiped.parade %></h3>
+				<h3> Vitesse = <%= @arme1Equiped.vit %></h3>
+				<h3> Critiques = <%= @arme1Equiped.crit %></h3>
+			</div>
+		<% else %>
+			<div class="desc">
+				<h3> Attaque = 0</h3>
+				<h3> Parade = 0</h3>
+				<h3> Vitesse = 0</h3>
+				<h3> Critiques = 0</h3>
+			</div>
+		<%end%>
+	</div>
+	<div class="col-xs-12 col-md-4 arme2Desc">
+		<% if @arme2Equiped != nil %>	
+			<div class="desc">
+				<h3> Attaque = <%= @arme2Equiped.attq %></h3>
+				<h3> Parade = <%= @arme2Equiped.parade %></h3>
+				<h3> Vitesse = <%= @arme2Equiped.vit %></h3>
+				<h3> Critiques = <%= @arme2Equiped.crit %></h3>
+			</div>
+		<% else %>
+			<div class="desc">
+				<h3> Attaque = 0</h3>
+				<h3> Parade = 0</h3>
+				<h3> Vitesse = 0</h3>
+				<h3> Critiques = 0</h3>
+			</div>
+		<%end%>
+	</div>
+	<div class="col-xs-12 col-md-4 armureDesc">
+		<% if @armureEquiped != nil %>	
+			<div class="desc">
+				<h3> Armure = <%= @armureEquiped.armor %></h3>
+				<h3> Parade = <%= @armureEquiped.parade %></h3>
+				<h3> Vitesse = <%= @armureEquiped.vit %></h3>
+			</div>
+		<% else %>
+			<div class="desc">
+				<h3> Armure = 0</h3>
+				<h3> Parade = 0</h3>
+				<h3> Vitesse = 0</h3>
+			</div>
+		<%end%>
+	</div>
+<div class="row">
+	<div class="col-xs-12">
+		<%= f.submit("Confirmer l'equipement", {:class => "btn btn-primary"}) %>
+	</div>
+</div>
+	<!-- End Formulaire -->
+		<% end %>
 
 	<!-- Modal -->
 		<div class="modal fade " id="armes" tabindex="-1" role="dialog" aria-labelledby="armes">
@@ -36,15 +111,16 @@
 
 		          
 		          	<div class="col-xs-12 col-md-3">
-  						<%= image_tag(@avatar.img_path, class: "menu_icon img-avatar arme_choice", id: @avatar.id) %>
+  						<%= image_tag(@avatar.img_path, class: "menu_icon  arme_choice", id: arme.id) %>
 
 		          	</div>
 		          <% end %>
+
 		       	</div>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
+		        <button type="button" class="btn btn-primary validAddArme"  data-dismiss="modal" >Confirmer la séléction</button>
 		      </div>
 		    </div>
 		  </div>
@@ -60,12 +136,12 @@
 		      </div>
 		      <div class="modal-body">
 		      	<div class="row">
-		          <% @armures_dispos.each do |arme| %>
+		          <% @armures_dispos.each do |armure| %>
 		          <% @avatar = Avatar.find_by_id(armure.avatar_id) %>
 
 		          
 		          	<div class="col-xs-12 col-md-3">
-  						<%= image_tag(@avatar.img_path, class: "menu_icon img-avatar arme_choice", id: @avatar.id) %>
+  						<%= image_tag(@avatar.img_path, class: "menu_icon img-avatar armure_choice", id: armure.id) %>
 
 		          	</div>
 		          <% end %>
@@ -73,15 +149,71 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
+		        <button type="button" class="btn btn-primary validAddArmure">Save changes</button>
 		      </div>
 		    </div>
 		  </div>
 		</div>
+
+
+
 </div>
 
 <script type="text/javascript">
+
+	var numberArme = 0;
+
 	$('#myModal').on('shown.bs.modal', function () {
   		$('#myInput').focus()
-	})
+	});
+
+	$('.arme_choice').on("click", function(){
+		if(!$(this).hasClass("weapponselected")){
+			$('.arme_choice').removeClass('selected');
+			$(this).addClass("selected");
+		}
+		else{
+			alert("Cette arme est déja séléctionné dans votre équipement !")
+		}
+
+	});
+
+	$('.armure_choice').on("click", function(){
+		if(!$(this).hasClass("armorselected")){
+			$('.armor_choice').removeClass('selected');
+			$(this).addClass("selected");
+		}
+		else{
+			alert("Cette armure est déja séléctionné dans votre équipement !")
+		}
+
+	});
+
+	$('.arme1').on("click", function(){
+		numberArme = 1;
+	});	
+	$('.arme2').on("click", function(){
+		numberArme = 2;
+	});
+
+	$('.validAddArmure').on("click", function(){
+		var armorChosenId = $('.selected.armure_choice').prop('id');
+		var armorChosenSrc = $('.selected.armure_choice').prop('src')
+		$('#'+armorChosenId).removeClass('selected');
+		$('#'+armorChosenId).addClass("armorselected");
+
+		$('.armure.add-equip').attr('src', armorChosenSrc);
+		$('.armure_id_form_field').val(armorChosenId);
+	});
+
+	$('.validAddArme').on("click", function(){
+		var weapponChosenId = $('.selected.arme_choice').prop('id');
+		var weapponChosenSrc = $('.selected.arme_choice').prop('src')
+		$('#'+weapponChosenId).removeClass('selected');
+		$('#'+weapponChosenId).addClass("weappon"+numberArme+"selected")
+		$('#'+weapponChosenId).addClass("weapponselected");
+
+		$('.arme'+numberArme+'.add-equip').attr('src', weapponChosenSrc);
+		$('.arme'+numberArme+'_id_form_field').val(weapponChosenId);
+	});
 </script>
