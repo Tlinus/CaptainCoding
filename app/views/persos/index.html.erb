@@ -2,6 +2,7 @@
 
 <% @persos.each do |perso| %>
 <% @avatar = Avatar.find_by_id(perso.avatar_id) %>
+<% @equip = Equipement.find_by_id(perso.equipement_id) %>
 	<div class="well">
 		<div class="row">
 			<div class="col-md-3">
@@ -16,6 +17,8 @@
 
 		</div>
 		<%= link_to "Inspecter", perso_path(perso), :class => "btn btn-default" %>
+		<%= link_to "Equiper", edit_equipement_path(@equip), :class => "btn btn-default" %>
+
 	
 	</div>
 <%end%>

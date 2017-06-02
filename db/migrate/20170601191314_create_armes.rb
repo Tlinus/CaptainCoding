@@ -6,6 +6,8 @@ class CreateArmes < ActiveRecord::Migration[5.0]
     	t.integer :parade
     	t.integer :vit
     	t.integer :crit
+      t.boolean :is_used
+
     	t.integer :avatar_id
       t.timestamps
     end

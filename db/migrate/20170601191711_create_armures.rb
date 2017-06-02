@@ -5,6 +5,8 @@ class CreateArmures < ActiveRecord::Migration[5.0]
     	t.integer :armor
     	t.integer :parade
     	t.integer :vit
+      t.boolean :is_used
+
     	t.integer :avatar_id
       t.timestamps
     end

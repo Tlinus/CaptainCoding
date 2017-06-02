@@ -1,2 +1,0 @@
-class CaracteristiquesController < ApplicationController
-end

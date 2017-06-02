@@ -10,6 +10,7 @@ class CreatePersos < ActiveRecord::Migration[5.0]
       t.integer :vit
       t.integer :crit
 
+      t.integer :equipement_id
       t.integer :avatar_id
 
       t.timestamps

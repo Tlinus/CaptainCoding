@@ -1,0 +1,87 @@
+		<%= form_for :equipement, url: equipement_path(@equipement), method: :patch do |f| %>
+			<% if @equipement.errors.any? %>
+				<% @equipement.errors.full_messages.each do |msg| %>
+					<div class="alert alert-danger"><%= msg %></div>
+				<% end %>
+			<% end %>
+			<%= hidden_field_tag :arme1_id, @equipement.arme1_id, :class => "arme1_id_form_field"%>
+			<%= hidden_field_tag :arme2_id, @equipement.arme2_id, :class => "arme2_id_form_field"%>
+			<%= hidden_field_tag :armure_id, @equipement.armure_id, :class => "armure_id_form_field"%>
+
+		<% end %>
+
+<div class="row">
+	<div class="col-xs-12 col-md-3 arme1" data-toggle="modal" data-target="#armes">
+		<%= image_tag("add.png", class: "menu_icon ") %>
+	</div>
+	<div class="col-xs-12 col-md-3 " data-toggle="modal" data-target="#armes">
+		<%= image_tag("add.png", class: "menu_icon arme2 ") %>
+	</div>
+	<div class="col-xs-12 col-md-3 " data-toggle="modal" data-target="#armures">
+		<%= image_tag("add.png", class: "menu_icon armure") %>
+	</div>
+
+	<!-- Modal -->
+		<div class="modal fade " id="armes" tabindex="-1" role="dialog" aria-labelledby="armes">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Equiper une arme</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<div class="row">
+		          <% @armes_dispos.each do |arme| %>
+		          <% @avatar = Avatar.find_by_id(arme.avatar_id) %>
+
+		          
+		          	<div class="col-xs-12 col-md-3">
+  						<%= image_tag(@avatar.img_path, class: "menu_icon img-avatar arme_choice", id: @avatar.id) %>
+
+		          	</div>
+		          <% end %>
+		       	</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+	<!-- Modal -->
+		<div class="modal fade " id="armures" tabindex="-1" role="dialog" aria-labelledby="armures">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Equiper une armure</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<div class="row">
+		          <% @armures_dispos.each do |arme| %>
+		          <% @avatar = Avatar.find_by_id(armure.avatar_id) %>
+
+		          
+		          	<div class="col-xs-12 col-md-3">
+  						<%= image_tag(@avatar.img_path, class: "menu_icon img-avatar arme_choice", id: @avatar.id) %>
+
+		          	</div>
+		          <% end %>
+		       	</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+</div>
+
+<script type="text/javascript">
+	$('#myModal').on('shown.bs.modal', function () {
+  		$('#myInput').focus()
+	})
+</script>

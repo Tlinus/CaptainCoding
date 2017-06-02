@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601191711) do
+ActiveRecord::Schema.define(version: 20170601235405) do
 
   create_table "armes", force: :cascade do |t|
     t.string   "nom"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170601191711) do
     t.integer  "parade"
     t.integer  "vit"
     t.integer  "crit"
+    t.boolean  "is_used"
     t.integer  "avatar_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,10 +27,9 @@ ActiveRecord::Schema.define(version: 20170601191711) do
   create_table "armures", force: :cascade do |t|
     t.string   "nom"
     t.integer  "armor"
-    t.integer  "def"
     t.integer  "parade"
     t.integer  "vit"
-    t.integer  "crit"
+    t.boolean  "is_used"
     t.integer  "avatar_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -48,12 +48,29 @@ ActiveRecord::Schema.define(version: 20170601191711) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "equipements", force: :cascade do |t|
+    t.integer  "arme1_id"
+    t.integer  "arme2_id"
+    t.integer  "armure_id"
+    t.integer  "bouclier_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "perso_id"
+  end
+
   create_table "persos", force: :cascade do |t|
     t.string   "nom"
     t.string   "surnom"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "vie"
+    t.integer  "attq"
+    t.integer  "armor"
+    t.integer  "parade"
+    t.integer  "vit"
+    t.integer  "crit"
+    t.integer  "equipement_id"
     t.integer  "avatar_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "stuffs", force: :cascade do |t|

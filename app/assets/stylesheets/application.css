@@ -24,6 +24,15 @@
     src: url('/assets/fonts/AlphaWood.ttf') format('truetype');
 }
 
+h4{
+	font-size: 3em;
+	color: #222;
+}
+h5{
+	font-size: 24px;
+	color: #111;
+	text-shadow:0 0 3px #FF0000;
+}
 input{
 	background-color: rgba(100,100,100, 0.4);
 }

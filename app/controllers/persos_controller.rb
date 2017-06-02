@@ -19,12 +19,17 @@ class PersosController < ApplicationController
         puts @perso.inspect
 
         @avatar = Avatar.new(avatar_params)
+        @avatar.save
+        @perso.avatar_id = @avatar.id
 
         puts @avatar.inspect
 
-        @avatar.save
-
-        @perso.avatar_id = @avatar.id
+        @equipement = Equipement.new()
+        puts @equipement.inspect
+        @equipement.save!
+        @perso.equipement_id = @equipement.id
+        puts @equipement.inspect
+       
 
     	if(@perso.save)
     		redirect_to @perso

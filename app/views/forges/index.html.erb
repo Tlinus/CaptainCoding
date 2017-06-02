@@ -4,17 +4,17 @@
 	</div>
 
 	<div class="col-xs-12 col-md-5 Armes">
-		<%= link_to "Creer une armes", new_arme_path, :class => "btn btn-create center-block" %>
+		<%= link_to "Creer une arme", new_arme_path, :class => "btn btn-create center-block" %>
 		<div class="row">
 			<div class="col-xs-12">
 				<% @armes.each do |arme| %>
 				<div class="well row">
 					<div class="col-xs-4"> 
 						<h4><%= arme.nom %></h4>
-						<h5> Attaque = <%= arme.attq %></h5>
-						<h5> Parade = <%= arme.parade %></h5>
-						<h5> Vitesse = <%= arme.vit %></h5>
-						<h5> Critiques = <%= arme.crit %></h5>
+						<h5> Attaque  <%= arme.attq %></h5>
+						<h5> Parade  <%= arme.parade %></h5>
+						<h5> Vitesse  <%= arme.vit %></h5>
+						<h5> Critiques  <%= arme.crit %></h5>
 					</div>
 					<div class="col-xs-8">
 						<% @avatar = Avatar.find_by_id(arme.avatar_id) %>
@@ -31,17 +31,16 @@
 	</div>
 
 	<div class="col-xs-12 col-md-offset-2 col-md-5 Armures">
-		<%= link_to "Creer une armures", new_armure_path, :class => "btn btn-create center-block" %>
+		<%= link_to "Creer une armure", new_armure_path, :class => "btn btn-create center-block" %>
 		<div class="row">
 			<div class="col-xs-12">
 				<% @armures.each do |armure| %>
 				<div class="well row">
 					<div class="col-xs-4"> 
 						<h4><%= armure.nom %></h4>
-						<h5> Armure = <%= armure.armor %></h5>
-						<h5> Parade = <%= armure.parade %></h5>
-						<h5> Vitesse = <%= armure.vit %></h5>
-						<h5 style="color: #f5f5f5"> a</h5>
+						<h5> Armure  <%= armure.armor %></h5>
+						<h5> Parade  <%= armure.parade %></h5>
+						<h5> Vitesse  <%= armure.vit %></h5>
 					</div>
 					<div class="col-xs-8">
 						<% @avatar = Avatar.find_by_id(armure.avatar_id) %>
