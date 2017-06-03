@@ -12,3 +12,110 @@ $(function() {
     
 });
 </script>
+
+<div class="Float-left Choose-oponent">
+	<div class="perso" data-toggle="modal" data-target="#persos">
+		
+			<%= image_tag("add_perso.png", class: "menu_icon perso1 fighter-ready ") %>
+		
+	</div>
+</div>
+<div class="Float-center Fight">
+			<%= form_for :arena, { action: "fight" } do |f| %>
+			<%= f.hidden_field(:perso1_id,  :class => "perso1_id_form_field")%>
+			<%= f.hidden_field( :perso2_id,  :class => "perso2_id_form_field")%>
+			<%= image_submit_tag("fight.png", :class => "fight-button") %>
+			<% end %>
+</div>
+<div class="Float-right Choose-oponent">
+	<div class="perso" data-toggle="modal" data-target="#persos">
+		
+			<%= image_tag("add_perso.png", class: "menu_icon perso2 fighter-ready ") %>
+		
+	</div>
+</div>
+
+
+<!-- Modal -->
+		<div class="modal fade " id="persos" tabindex="-1" role="dialog" aria-labelledby="persos">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Choisir un combattant</h4>
+		      </div>
+		      <div class="modal-body">
+		      	<div class="row">
+		          <% @persos.each do |perso| %>
+		          <% @avatar = Avatar.find_by_id(perso.avatar_id) %>
+
+		          
+		          	<div class="col-xs-12 col-md-3">
+  						<%= image_tag(@avatar.img_path, class: "menu_icon  perso_choice", id: perso.id) %>
+
+		          	</div>
+		          <% end %>
+
+		       	</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary validAddPerso"  data-dismiss="modal" >Confirmer la séléction</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+<script type="text/javascript">
+	
+	var numberPerso = 0;
+	$(".perso1_id_form_field").val(0);
+	$(".perso2_id_form_field").val(0);
+	$( ".fight-button" ).hide();
+	$('.perso_choice').on("click", function(){
+		if(!$(this).hasClass("persoselected")){
+			$('.perso_choice').removeClass('selected-perso');
+			$(this).addClass("selected-perso");
+		}
+		else{
+			alert("Cette arme est déja séléctionné dans votre équipement !")
+		}
+
+	});
+
+	$('.validAddPerso').on("click", function(){
+		var persoChosenId = $('.selected-perso.perso_choice').prop('id');
+		var persoChosenSrc = $('.selected-perso.perso_choice').prop('src')
+		$('#'+persoChosenId).addClass("perso"+numberPerso+"selected")
+		$('#'+persoChosenId).removeClass('selected-perso');
+		$('#'+persoChosenId).addClass("persoselected");
+		$('.perso'+numberPerso+'.fighter-ready').attr('src', persoChosenSrc);
+		$('.perso'+numberPerso+'_id_form_field').val(persoChosenId);
+		checkIfIsFightReady();
+	});
+
+	$('.perso1').on("click", function(){
+		numberPerso = 1;
+	});	
+	$('.perso2').on("click", function(){
+		numberPerso = 2;
+	});
+
+	function checkIfIsFightReady(){
+		if ($(".perso1_id_form_field").val() >= 1){
+			if($(".perso2_id_form_field").val() >= 1 ){	
+				$('.fight-button').css({
+			        'position' : 'fixed',
+			        'width' : '500px',
+			        'top'	: ( $(window).height() - $('.fight-button').height())/2,
+			        'left' : ( $(window).width() - $('.fight-button').width())/2,
+			        'z-index': '2000',
+			        'margin-left' : '0'     
+		    	});
+				$( ".fight-button" ).toggle( "pulsate" );
+
+				
+			}
+		} 			
+	}
+</script>

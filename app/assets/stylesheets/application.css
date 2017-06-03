@@ -112,21 +112,63 @@ margin: 0;
   width: 100%;
 }
 
-.arme_choice{
+.arme_choice , .perso_choice{
   width: 150px;
   height:  150px;
 
 }
+.fight-button{
+  background-color: rgba(0,0,0,0);
+  position: fixed;
+}
+.fight-ready{
+      -webkit-animation:spin 1s linear infinite;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.selected-perso, .persoselected{
+  filter: grayscale(70%);
+  -webkit-filter: grayscale(70%);
+  -moz-filter: grayscale(70%);
+  border:  3px dotted black;
+}
 .selected{
   background-color: #888;
 }
-.armure, .arme1, .arme2{
+.armure, .arme1, .arme2, .fighter-ready{
   max-width: 100%;
   max-height: 300px;
 }
 
 .img-avatar-arme-showperso{
   width: 100%;
+}
+
+.Float-left {
+  float: left;
+}
+.Float-right {
+  float: right;
+}
+.Float-right img {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+}
+
+.modal-dialog{
+  margin-top: 125px;
+}
+
+.Choose-oponent{
+  width: 33%;
 }
 input[type=text-area]{
 	background-color: rgba(200, 200, 200, 0.5);
