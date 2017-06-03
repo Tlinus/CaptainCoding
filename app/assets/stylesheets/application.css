@@ -170,6 +170,8 @@ margin: 0;
 .Choose-oponent{
   width: 33%;
 }
+
+
 input[type=text-area]{
 	background-color: rgba(200, 200, 200, 0.5);
 }
@@ -261,4 +263,15 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
   background: rgba(163, 97, 78, 0.5);
+}
+
+
+/* FIGHT */
+meter{
+  width: 100%;
+}
+.avatar-arme-fighter{
+  width: 100%;
+  background-image: url('/assets/background-sky.png');
+  background-size: 150% 140%;
 }

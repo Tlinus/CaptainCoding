@@ -1,19 +1,37 @@
 <div class="Float-left Choose-oponent">
 	<div class="perso">
 		
-			<%= image_tag(@avatarPerso1.img_path, class: "fighter-ready ") %>
+		<%= image_tag(@avatarPerso1.img_path, class: "fighter-ready ") %>
+
 		<div class="row">
 			<div class="col-xs-12">
-				
+				<meter class="viePerso1" value="<%= @viePerso1 %>" min="0" max="<%= @viePerso1 %>"> <%= @viePerso1 %>/<%= @viePerso1 %></meter>
 			</div>
 			<div class="col-xs-4">
-				
+				<% unless @avatarArme1Perso1.nil? %>
+					<%= image_tag(@avatarArme1Perso1.img_path, class: "menu_icon avatar-arme-fighter") %>
+				<% end %>
 			</div>
 			<div class="col-xs-4">
-				
+				<% unless @avatarArme2Perso1.nil? %>
+					<%= image_tag(@avatarArme2Perso1.img_path, class: "menu_icon avatar-arme-fighter") %>
+				<% end %>
 			</div>
 			<div class="col-xs-4">
+				<% unless @avatarArmurePerso1.nil? %>
+					<%= image_tag(@avatarArmurePerso1.img_path, class: "menu_icon avatar-arme-fighter") %>
+				<% end %>
+			</div>
+
+			<div class="col-xs-12">
+				<h2>Statistiques</h2>
 				
+				<h3> Armure    = <span class="armure1"><%= @armorPerso1 %>	</span></h3>
+				<h3> Attaque   = <span class="attaque1"><%= @attqPerso1 %>	</span></h3>
+				<h3> Parade    = <span class="parade1"><%= @paradePerso1 %></span></h3>
+				<h3> Vitesse   = <span class="vitesse1"><%= @vitPerso1 %>	</span></h3>
+				<h3> Critiques = <span class="critiques1"><%= @critPerso1 %>	</span></h3>
+
 			</div>
 		</div>
 	</div>
@@ -21,7 +39,195 @@
 <div class="Float-right Choose-oponent">
 	<div class="perso">
 		
-			<%= image_tag(@avatarPerso2.img_path, class: "fighter-ready ") %>
-		
+		<%= image_tag(@avatarPerso2.img_path, class: "fighter-ready ") %>
+
+		<div class="row">
+			<div class="col-xs-12 ">
+				<meter class="viePerso2" value="<%= @viePerso2 %>" min="0" max="<%= @viePerso2 %>"> <%= @viePerso2 %>/<%= @viePerso2 %></meter>
+			</div>
+			<div class="col-xs-4 Stuff-container">
+				<% unless @avatarArme1Perso2.nil? %>
+					<%= image_tag(@avatarArme1Perso2.img_path, class: "menu_icon avatar-arme-fighter") %>
+				<% end %>
+			</div>
+			<div class="col-xs-4 Stuff-container">
+				<% unless @avatarArme2Perso2.nil? %>
+					<%= image_tag(@avatarArme2Perso2.img_path, class: "menu_icon avatar-arme-fighter") %>
+				<% end %>
+			</div>
+			<div class="col-xs-4 Stuff-container">
+				<% unless @avatarArmurePerso2.nil? %>
+					<%= image_tag(@avatarArmurePerso2.img_path, class: "menu_icon avatar-arme-fighter") %>
+				<% end %>
+			</div>
+
+			<div class="col-xs-12">
+				<h2>Statistiques</h2>
+				
+				<h3> Armure    = <span class="armure2"><%= @armorPerso2 %> 		</span></h3>
+				<h3> Attaque   = <span class="attaque2"><%= @attqPerso2 %> 		</span></h3>
+				<h3> Parade    = <span class="parade2"><%= @paradePerso2 %> 	</span></h3>
+				<h3> Vitesse   = <span class="vitesse2"><%= @vitPerso2 %> 		</span></h3>
+				<h3> Critiques = <span class="critiques2"><%= @critPerso2 %> 	</span></h3>
+
+			</div>
+		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+class Perso{
+	constructor(VieUi, ArmureUi, Vie, Armure, Attaque, Parade, Vitesse, Critiques) {
+		this.vieUi 		= VieUi;
+		this.armureUi 	= ArmureUi;
+		this.vie 		= Vie;
+		this.armure 	= Armure;
+		this.attaque 	= Attaque;
+		this.parade 	= Parade;
+		this.vitesse 	= Vitesse;
+		this.critiques 	= Critiques;
+
+	}
+
+	assignEnemy (persoEnemy){		
+		this.enemy = persoEnemy;
+	}
+
+	GetChancesDeSuccesAttaque(){
+		this.chanceBase = this.vitesse - this.enemy.parade;
+
+		if (this.chanceBase <= 0) {
+			this.chanceDeSuccesAttaque = 5;
+			this.chanceDeSuccesAttaque = 5 - Math.floor(Math.abs(this.chanceBase)/45);
+		}
+		else {
+			this.chanceDeSuccesAttaque = 5 + Math.round(this.chanceBase/10);
+		}
+
+		console.log(this.chanceDeSuccesAttaque);
+	}
+
+	tryAttaque(){
+		var rand = Math.floor((Math.random() * 10) + 1)
+		console.log("chanceDeSuccesAttaque : " + this.chanceDeSuccesAttaque);
+		console.log("CanAttaque? " + rand);
+		if (this.chanceDeSuccesAttaque >= rand) {
+			this.attaqueEnemy();
+			console.log("attaque");
+
+		}
+		else{
+			this.attaqueFailed();
+			console.log("attaqueFailed");
+		}
+	}
+
+	attaqueFailed(){
+		console.log("esquive");
+	}
+
+	attaqueEnemy(){
+		var critiques = this.AttaqueCritique();
+		this.enemy.estSousAttaque(this.attaque, critiques);
+	}
+
+	estSousAttaque(attaque, critiques){
+		console.log("attaque:" + attaque);
+		console.log("critiques" + critiques);
+		console.log("armor" + this.armure);
+		this.takeCritiques(critiques);
+		if (attaque > this.armure) {
+			this.prendDommages(attaque);	
+		}
+		
+		
+	}
+	prendDommages(dmg){
+		this.vie -= dmg;
+		this.vieUi.val(this.vie);
+
+		console.log("took: " +dmg);
+	}
+	takeCritiques(crit){
+		if (this.armure > 0) {
+			if (crit < this.armure) {
+				this.armure -= crit;
+			}
+			else{
+				var dmg = Math.abs(this.armure - crit);
+				this.armure = 0;
+				this.prendDommages(dmg);
+				
+			}
+		}
+		else{
+			this.prendDommages(crit);
+		}
+	}
+	AttaqueCritique(){
+		var rand = getRandomInt(1, 200); 
+		if (this.critiques <= rand) {
+			return this.critiques * getRandomInt(1, 3);
+		}
+		else{
+			return 0;
+		}
+	}
+
+}
+
+	var Vie1 	   = $(".viePerso1").val();
+	var Armure1    = $(".armure1").html();
+	var Attaque1   = $(".attaque1").html();
+	var Parade1    = $(".parade1").html();
+	var Vitesse1   = $(".vitesse1").html();
+	var Critiques1 = $(".critiques1").html();
+
+	var Vie2 	   = $(".viePerso2").val();
+	var Armure2    = $(".armure2").html();
+	var Attaque2   = $(".attaque2").html();
+	var Parade2    = $(".parade2").html();
+	var Vitesse2   = $(".vitesse2").html();
+	var Critiques2 = $(".critiques2").html();
+
+
+	var perso1 = new Perso($(".viePerso1"), $(".armurePerso1"), Vie1, Armure1, Attaque1, Parade1, Vitesse1, Critiques1);
+	var perso2 = new Perso($(".viePerso2"), $(".armurePerso2"), Vie2, Armure2, Attaque2, Parade2, Vitesse2, Critiques2);
+
+	perso1.assignEnemy(perso2);
+	perso1.GetChancesDeSuccesAttaque();
+
+	perso2.assignEnemy(perso1);
+	perso2.GetChancesDeSuccesAttaque();
+
+	// perso1.tryAttaque();
+	// perso1.tryAttaque();
+	// perso1.tryAttaque();
+	// perso1.tryAttaque();
+
+	// perso2.prendDommages(200);
+
+	while(perso1.vie > 0){
+		if(perso2.vie <= 0){
+			break;
+		}
+		 perso1.tryAttaque();
+		 perso2.tryAttaque();
+	}
+
+	console.log("Perso1 =>");
+	console.log(perso1);
+	console.log("///////////////////////////////////////////////////////////////////");
+
+	console.log("Perso2 =>");
+	console.log(perso2);
+	console.log("///////////////////////////////////////////////////////////////////");
+	
+</script>
