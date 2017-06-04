@@ -57,7 +57,7 @@ class ArmuresController < ApplicationController
     	@armure.destroy
     	@avatar.destroy
 
-    	redirect_to armures_path
+    	redirect_to forges_path
     end
 
     private def armure_params

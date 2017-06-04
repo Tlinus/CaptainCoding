@@ -275,3 +275,23 @@ meter{
   background-image: url('/assets/background-sky.png');
   background-size: 150% 140%;
 }
+
+
+.animate{
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+ }
+
+.btn-valid-equip{
+ background-color: rgba(00, 00, 00, 0.9);
+ color: rgb(200, 200, 200);
+ border-radius: 100px;
+ width: 25%;
+ margin-top: 50px;
+
+}
+.btn-valid-equip:hover{
+  color: #EEE;
+
+}

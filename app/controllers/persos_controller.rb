@@ -79,7 +79,25 @@ class PersosController < ApplicationController
 
     def destroy
     	@perso = Perso.find(params[:id])
+        @equipement = Equipement.find(@perso.equipement_id)
+
     	@perso.destroy
+        unless @equipement.arme1_id.nil?
+            @arme1Equiped = Arme.find_by_id(@equipement.arme1_id)
+            @arme1Equiped.is_used = false
+            @arme1Equiped.save
+        end
+        unless @equipement.arme2_id.nil?
+            @arme2Equiped = Arme.find_by_id(@equipement.arme2_id)
+            @arme2Equiped.is_used = false
+            @avatarArme2Equiped.saved
+        end
+        unless @equipement.armure_id.nil?
+            @armureEquiped = Armure.find_by_id(@equipement.armure_id)
+            @armureEquiped.is_used = false
+            @armureEquiped.save
+        end
+        @equipement.destroy
 
     	redirect_to persos_path
     end

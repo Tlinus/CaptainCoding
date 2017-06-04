@@ -1,7 +1,8 @@
+<link rel="stylesheet" href="/magic.css">
 <div class="Float-left Choose-oponent">
 	<div class="perso">
 		
-		<%= image_tag(@avatarPerso1.img_path, class: "fighter-ready ") %>
+		<%= image_tag(@avatarPerso1.img_path, class: "fighter-ready fighter1 ") %>
 
 		<div class="row">
 			<div class="col-xs-12">
@@ -39,7 +40,7 @@
 <div class="Float-right Choose-oponent">
 	<div class="perso">
 		
-		<%= image_tag(@avatarPerso2.img_path, class: "fighter-ready ") %>
+		<%= image_tag(@avatarPerso2.img_path, class: "fighter-ready fighter2") %>
 
 		<div class="row">
 			<div class="col-xs-12 ">
@@ -83,8 +84,14 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function sleep(seconds){
+    var waitUntil = new Date().getTime() + seconds*1000;
+    while(new Date().getTime() < waitUntil) true;
+}
+
 class Perso{
-	constructor(VieUi, ArmureUi, Vie, Armure, Attaque, Parade, Vitesse, Critiques) {
+	constructor(PersoUi, VieUi, ArmureUi, Vie, Armure, Attaque, Parade, Vitesse, Critiques) {
+		this.persoUi 	= PersoUi;
 		this.vieUi 		= VieUi;
 		this.armureUi 	= ArmureUi;
 		this.vie 		= Vie;
@@ -146,6 +153,9 @@ class Perso{
 		if (attaque > this.armure) {
 			this.prendDommages(attaque);	
 		}
+		else{
+			this.prendDommages(75);
+		}
 		
 		
 	}
@@ -157,11 +167,11 @@ class Perso{
 	}
 	takeCritiques(crit){
 		if (this.armure > 0) {
-			if (crit < this.armure) {
-				this.armure -= crit;
+			if (crit*0.5 < this.armure) {
+				this.armure -= crit*0.5;
 			}
 			else{
-				var dmg = Math.abs(this.armure - crit);
+				var dmg = Math.abs(this.armure - crit*0.5);
 				this.armure = 0;
 				this.prendDommages(dmg);
 				
@@ -198,8 +208,8 @@ class Perso{
 	var Critiques2 = $(".critiques2").html();
 
 
-	var perso1 = new Perso($(".viePerso1"), $(".armurePerso1"), Vie1, Armure1, Attaque1, Parade1, Vitesse1, Critiques1);
-	var perso2 = new Perso($(".viePerso2"), $(".armurePerso2"), Vie2, Armure2, Attaque2, Parade2, Vitesse2, Critiques2);
+	var perso1 = new Perso($(".fighter1"), $(".viePerso1"), $(".armurePerso1"), Vie1, Armure1, Attaque1, Parade1, Vitesse1, Critiques1);
+	var perso2 = new Perso($('.fighter2'), $(".viePerso2"), $(".armurePerso2"), Vie2, Armure2, Attaque2, Parade2, Vitesse2, Critiques2);
 
 	perso1.assignEnemy(perso2);
 	perso1.GetChancesDeSuccesAttaque();
@@ -207,19 +217,12 @@ class Perso{
 	perso2.assignEnemy(perso1);
 	perso2.GetChancesDeSuccesAttaque();
 
-	// perso1.tryAttaque();
-	// perso1.tryAttaque();
-	// perso1.tryAttaque();
-	// perso1.tryAttaque();
-
-	// perso2.prendDommages(200);
-
 	while(perso1.vie > 0){
 		if(perso2.vie <= 0){
 			break;
 		}
-		 perso1.tryAttaque();
-		 perso2.tryAttaque();
+		perso1.tryAttaque();
+		perso2.tryAttaque();
 	}
 
 	console.log("Perso1 =>");
@@ -229,5 +232,7 @@ class Perso{
 	console.log("Perso2 =>");
 	console.log(perso2);
 	console.log("///////////////////////////////////////////////////////////////////");
+
+
 	
 </script>

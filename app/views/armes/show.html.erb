@@ -1,4 +1,5 @@
-<%= image_tag(@avatar.img_path, class: "menu_icon img-armes-show") %>
+<div class="col-xs-12 col-md-offset-4 col-md-4" >
+	<%= image_tag(@avatar.img_path, class: "menu_icon img-armes-show") %>
 <h2><%= @arme.nom %></h2>
 
 <h3> Attaque = <%= @arme.attq %></h3>
@@ -11,3 +12,11 @@
 method: :delete,
 data: {confirm: 'Etes-vous sûr de vouloir supprimer cette Arme?'},
 :class => 'btn btn-danger' %>  
+</div>
+
+<div class="col-xs-12 col-md-4">
+	<%= link_to "Retour à la Forge", forges_path, :class => "btn btn-create center-block" %>	
+	<%= link_to "Creer une autre arme", new_arme_path, :class => "btn btn-create center-block" %>
+	<%= link_to "Creer une armure", new_armure_path, :class => "btn btn-create center-block" %>
+
+</div>
